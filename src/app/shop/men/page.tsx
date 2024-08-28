@@ -56,7 +56,7 @@ const ListingPage = () => {
               height={640}
               objectFit="cover"
             />
-            <p className="font-light">
+            <p className="text-sm font-light">
               ellesse Hazzo tipped detail overhead hoodie in black
             </p>
             <p className="text-lg font-semibold mt-2">$ 79.99</p>
