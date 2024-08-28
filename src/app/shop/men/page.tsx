@@ -23,7 +23,7 @@ const ListingPage = () => {
       {/* main header ends  */}
       {/* Tagline  */}
       <div className="w-full p-4">
-        <h2 className="text-xl font-bold">
+        <h2 className="text-xl font-bold text-center">
           Men&apos;s New In : Today - Latest Arrivals
         </h2>
         <p className="text-sm font-light">
@@ -34,8 +34,8 @@ const ListingPage = () => {
 
       {/* sort and filter  */}
       <div className="w-full p-4 flex justify-between items-center bg-zinc-300">
-        <p className="px-12 text-lg font-semibold text-zinc-700">SORT</p>
-        <p className="px-12 text-lg font-semibold text-zinc-700">FILTER</p>
+        <p className="px-12 text-base font-semibold text-zinc-700">SORT</p>
+        <p className="px-12 text-base font-semibold text-zinc-700">FILTER</p>
       </div>
 
       {/* sort and filter ends here  */}
