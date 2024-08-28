@@ -3,6 +3,7 @@ import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch, FaUser, FaShoppingBag } from "react-icons/fa";
 import { TbJewishStarFilled } from "react-icons/tb";
+import FilterDrawer from "@/components/Drawer/filterDrawer";
 
 const ListingPage = () => {
   const clothes = new Array(30).fill("1");
@@ -38,7 +39,7 @@ const ListingPage = () => {
       {/* sort and filter  */}
       <div className="w-full p-4 flex justify-between items-center bg-zinc-300">
         <p className="px-12 text-base font-semibold text-zinc-700">SORT</p>
-        <p className="px-12 text-base font-semibold text-zinc-700">FILTER</p>
+        <FilterDrawer />
       </div>
 
       {/* sort and filter ends here  */}
