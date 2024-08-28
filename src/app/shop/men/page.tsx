@@ -45,8 +45,8 @@ const ListingPage = () => {
 
       {/* product listing starts here  */}
       <div className="w-full grid grid-cols-2 px-4 gap-x-4 gap-y-4">
-        {clothes.map((item: any) => (
-          <div className="w-full">
+        {clothes.map((item: any, index: number) => (
+          <div className="w-full" key={index}>
             <Image
               src="https://images.asos-media.com/products/ellesse-hazzo-tipped-detail-overhead-hoodie-in-black/206898212-1-black?$n_640w$&wid=634&fit=constrain"
               alt="shop-image"
