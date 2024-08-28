@@ -23,8 +23,8 @@ const ListingPage = () => {
       {/* main header ends  */}
       {/* Tagline  */}
       <div>
-        <h2>Men's New In : Today - Latest Arrivals</h2>
-        <p>Closet refresh long overdue? Enter: the men's New in</p>
+        <h2>Men&apos;s New In : Today - Latest Arrivals</h2>
+        <p>Closet refresh long overdue? Enter: the men&apos;s New in</p>
       </div>
       {/* Tagline ends here  */}
 
