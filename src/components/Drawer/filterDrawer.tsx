@@ -1,137 +1,196 @@
 "use client";
 
-import React from "react";
-import { Minus, Plus } from "lucide-react";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { FilterIcon, X, Search } from "lucide-react";
 
-const data = [
+// Sample category data structure
+const categories = [
   {
-    goal: 400,
+    name: "Clothing",
+    subcategories: [
+      "T-Shirts",
+      "Jeans",
+      "Dresses",
+      "Jackets",
+      "Sweaters",
+      "Skirts",
+      "Shorts",
+      "Activewear",
+    ],
   },
   {
-    goal: 300,
+    name: "Shoes",
+    subcategories: [
+      "Sneakers",
+      "Boots",
+      "Sandals",
+      "Heels",
+      "Flats",
+      "Loafers",
+      "Athletic Shoes",
+    ],
   },
   {
-    goal: 200,
+    name: "Accessories",
+    subcategories: [
+      "Bags",
+      "Jewelry",
+      "Belts",
+      "Hats",
+      "Scarves",
+      "Sunglasses",
+      "Watches",
+    ],
   },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 239,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 349,
-  },
+  // Add more main categories as needed
 ];
 
-const FilterDrawer = () => {
-  const [goal, setGoal] = React.useState(350);
+export default function Component() {
+  const [priceRange, setPriceRange] = useState([0, 200]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  }
+  const filteredCategories = categories
+    .map((category) => ({
+      ...category,
+      subcategories: category.subcategories.filter((subcat) =>
+        subcat.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    }))
+    .filter((category) => category.subcategories.length > 0);
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <p className="px-12 text-base font-semibold text-zinc-700">FILTER</p>
+        <Button
+          variant="outline"
+          className="fixed bottom-4 left-4 z-50 rounded-full"
+        >
+          <FilterIcon className="mr-2 h-4 w-4" />
+          Filters
+        </Button>
       </DrawerTrigger>
-      <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
-          <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-          </DrawerHeader>
-          <div className="p-4 pb-0">
-            <div className="flex items-center justify-center space-x-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(-10)}
-                disabled={goal <= 200}
-              >
-                <Minus className="h-4 w-4" />
-                <span className="sr-only">Decrease</span>
-              </Button>
-              <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  Calories/day
-                </div>
+      <DrawerContent className="h-[85vh] rounded-t-[10px]">
+        <DrawerHeader className="flex justify-between items-center">
+          <DrawerTitle>Filters</DrawerTitle>
+          <DrawerClose asChild>
+            <Button variant="ghost" size="icon">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </Button>
+          </DrawerClose>
+        </DrawerHeader>
+        <ScrollArea className="px-4 h-[calc(85vh-10rem)]">
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Categories</h3>
+              <div className="relative mb-4">
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search categories"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-8"
+                />
               </div>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(10)}
-                disabled={goal >= 400}
-              >
-                <Plus className="h-4 w-4" />
-                <span className="sr-only">Increase</span>
-              </Button>
+              <Accordion type="multiple" className="w-full">
+                {filteredCategories.map((category) => (
+                  <AccordionItem value={category.name} key={category.name}>
+                    <AccordionTrigger>{category.name}</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-2">
+                        {category.subcategories.map((subcat) => (
+                          <div key={subcat} className="flex items-center">
+                            <Checkbox id={`category-${subcat}`} />
+                            <Label
+                              htmlFor={`category-${subcat}`}
+                              className="ml-2"
+                            >
+                              {subcat}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
-            <div className="mt-3 h-[120px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data}>
-                  <Bar
-                    dataKey="goal"
-                    style={
-                      {
-                        fill: "hsl(var(--foreground))",
-                        opacity: 0.9,
-                      } as React.CSSProperties
-                    }
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Sizes</h3>
+              <div className="flex flex-wrap gap-2">
+                {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
+                  <Button key={size} variant="outline" className="rounded-full">
+                    {size}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Colors</h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "bg-red-500",
+                  "bg-blue-500",
+                  "bg-green-500",
+                  "bg-yellow-500",
+                  "bg-purple-500",
+                  "bg-gray-500",
+                ].map((color) => (
+                  <Button
+                    key={color}
+                    variant="outline"
+                    className={`w-8 h-8 rounded-full ${color}`}
                   />
-                </BarChart>
-              </ResponsiveContainer>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Price Range</h3>
+              <Slider
+                min={0}
+                max={200}
+                step={10}
+                value={priceRange}
+                onValueChange={setPriceRange}
+                className="mb-2"
+              />
+              <div className="flex justify-between text-sm text-gray-500">
+                <span>${priceRange[0]}</span>
+                <span>${priceRange[1]}</span>
+              </div>
             </div>
           </div>
-          <DrawerFooter>
-            <Button>Submit</Button>
-            <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </div>
+        </ScrollArea>
+        <DrawerFooter>
+          <Button className="w-full">Apply Filters</Button>
+          <DrawerClose asChild>
+            <Button variant="outline" className="w-full">
+              Cancel
+            </Button>
+          </DrawerClose>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
-};
-
-export default FilterDrawer;
+}
