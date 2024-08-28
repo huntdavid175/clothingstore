@@ -45,7 +45,7 @@ const ListingPage = () => {
       {/* sort and filter ends here  */}
 
       {/* product listing starts here  */}
-      <div className="w-full grid grid-cols-2 px-4 gap-x-4 gap-y-4">
+      <div className="w-full grid grid-cols-2 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
         {clothes.map((item: any, index: number) => (
           <div className="w-full" key={index}>
             <Image
