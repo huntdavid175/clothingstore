@@ -1,9 +1,12 @@
 import React from "react";
+import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch, FaUser, FaShoppingBag } from "react-icons/fa";
 import { TbJewishStarFilled } from "react-icons/tb";
 
 const ListingPage = () => {
+  const clothes = new Array(30).fill("1");
+
   return (
     <div className="w-full">
       {/* main header  */}
@@ -39,6 +42,26 @@ const ListingPage = () => {
       </div>
 
       {/* sort and filter ends here  */}
+
+      {/* product listing starts here  */}
+      <div className="w-full grid grid-cols-2 px-4 gap-x-4 gap-y-4">
+        {clothes.map((item: any) => (
+          <div className="w-full">
+            <Image
+              src="https://images.asos-media.com/products/ellesse-hazzo-tipped-detail-overhead-hoodie-in-black/206898212-1-black?$n_640w$&wid=634&fit=constrain"
+              alt="shop-image"
+              layout="responsive"
+              width={634}
+              height={640}
+              objectFit="cover"
+            />
+            <p className="font-light">
+              ellesse Hazzo tipped detail overhead hoodie in black
+            </p>
+            <p className="text-lg font-semibold mt-2">$ 79.99</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
