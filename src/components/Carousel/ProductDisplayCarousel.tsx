@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const ProductDisplayCarousel = () => {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-full">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
