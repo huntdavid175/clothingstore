@@ -9,19 +9,21 @@ const ListingPage = () => {
   const clothes = new Array(30).fill("1");
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center">
       {/* main header  */}
-      <div className="max-w-7xl flex justify-between items-center p-4 bg-black text-white">
-        <div className="flex space-x-4 items-center">
-          <GiHamburgerMenu className="text-xl" />
-          <h3 className="text-xl font-bold">Online Boutique</h3>
-        </div>
+      <div className="w-full bg-black text-white">
+        <div className="max-w-7xl flex justify-between items-center p-4">
+          <div className="flex space-x-4 items-center">
+            <GiHamburgerMenu className="text-xl" />
+            <h3 className="text-xl font-bold">Online Boutique</h3>
+          </div>
 
-        <div className="flex space-x-4 items-center text-xl">
-          <FaSearch />
-          <FaUser />
-          <TbJewishStarFilled />
-          <FaShoppingBag />
+          <div className="flex space-x-4 items-center text-xl">
+            <FaSearch />
+            <FaUser />
+            <TbJewishStarFilled />
+            <FaShoppingBag />
+          </div>
         </div>
       </div>
       {/* main header ends  */}
