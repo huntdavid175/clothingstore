@@ -15,7 +15,7 @@ const ProductDisplayCarousel = () => {
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div className="px-1">
               <Image
                 src="https://images.asos-media.com/products/ellesse-almora-sweatshirt-in-beige/206898124-1-beige?$n_1280w$&wid=1125&fit=constrain"
                 width={1280}
