@@ -39,7 +39,7 @@ const ListingPage = () => {
       {/* Tagline ends here  */}
 
       {/* sort and filter  */}
-      <div className="w-full p-4 flex justify-between items-center bg-zinc-300">
+      <div className="w-full p-4 flex justify-center items-center bg-zinc-300">
         <div className="max-w-7xl">
           <p className="px-12 text-base font-semibold text-zinc-700">SORT</p>
           <FilterDrawer />
