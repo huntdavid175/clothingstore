@@ -32,10 +32,10 @@ const ProductDisplay = () => {
         <div className="flex flex-col lg:flex-row">
           <ProductDisplayCarousel />
           <div className="px-2">
-            <p className="text-lg font-light text-gray-600">
+            <p className="text-base font-light text-gray-600">
               The North Face Training 24 / 7 logo t-shirt in white
             </p>
-            <p className="text-xl font-semibold text-gray-500">$30.00</p>
+            <p className="text-lg font-semibold text-gray-500">$30.00</p>
           </div>
         </div>
       </div>
