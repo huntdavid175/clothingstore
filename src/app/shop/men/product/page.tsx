@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch, FaUser, FaShoppingBag } from "react-icons/fa";
 import { TbJewishStarFilled } from "react-icons/tb";
 import FilterDrawer from "@/components/Drawer/filterDrawer";
+import ProductDisplayCarousel from "@/components/Carousel/ProductDisplayCarousel";
 
 const ProductDisplay = () => {
   return (
@@ -28,14 +29,7 @@ const ProductDisplay = () => {
       {/* main header ends  */}
       <div className="max-w-7xl">
         <div className="flex flex-col lg:flex-row">
-          <Image
-            src="https://images.asos-media.com/products/ellesse-almora-sweatshirt-in-beige/206898124-1-beige?$n_1280w$&wid=1125&fit=constrain"
-            width={1280}
-            height={1280}
-            objectFit="contain"
-            alt="product image"
-            sizes="(100vw, 100vh)"
-          />
+          <ProductDisplayCarousel />
         </div>
       </div>
     </div>
