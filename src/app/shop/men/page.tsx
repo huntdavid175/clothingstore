@@ -11,7 +11,7 @@ const ListingPage = () => {
   return (
     <div className="w-full">
       {/* main header  */}
-      <div className="w-full flex justify-between items-center p-4 bg-black text-white">
+      <div className="max-w-7xl flex justify-between items-center p-4 bg-black text-white">
         <div className="flex space-x-4 items-center">
           <GiHamburgerMenu className="text-xl" />
           <h3 className="text-xl font-bold">Online Boutique</h3>
@@ -26,11 +26,11 @@ const ListingPage = () => {
       </div>
       {/* main header ends  */}
       {/* Tagline  */}
-      <div className="w-full p-4">
+      <div className="max-w-7xl p-4">
         <h2 className="text-xl font-bold text-center">
           Men&apos;s New In : Today - Latest Arrivals
         </h2>
-        <p className="text-sm font-light">
+        <p className="text-sm font-light text-center">
           Closet refresh long overdue? Enter: the men&apos;s New in
         </p>
       </div>
@@ -45,7 +45,7 @@ const ListingPage = () => {
       {/* sort and filter ends here  */}
 
       {/* product listing starts here  */}
-      <div className="w-full grid grid-cols-2 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
+      <div className="max-w-7xl grid grid-cols-2 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
         {clothes.map((item: any, index: number) => (
           <div className="w-full" key={index}>
             <Image
