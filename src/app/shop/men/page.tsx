@@ -40,8 +40,10 @@ const ListingPage = () => {
 
       {/* sort and filter  */}
       <div className="w-full p-4 flex justify-between items-center bg-zinc-300">
-        <p className="px-12 text-base font-semibold text-zinc-700">SORT</p>
-        <FilterDrawer />
+        <div className="max-w-7xl">
+          <p className="px-12 text-base font-semibold text-zinc-700">SORT</p>
+          <FilterDrawer />
+        </div>
       </div>
 
       {/* sort and filter ends here  */}
