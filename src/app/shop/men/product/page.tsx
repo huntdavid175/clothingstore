@@ -28,7 +28,7 @@ const ProductDisplay = () => {
       </div>
       {/* main header ends  */}
       {/* Carousel section  */}
-      <div className="max-w-7xl">
+      <div className="max-w-4xl">
         <div className="flex flex-col lg:flex-row">
           <ProductDisplayCarousel />
           <div className="p-4">
