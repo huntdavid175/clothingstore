@@ -4,6 +4,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch, FaUser, FaShoppingBag } from "react-icons/fa";
 import { TbJewishStarFilled } from "react-icons/tb";
 import FilterDrawer from "@/components/Drawer/filterDrawer";
+import ProductListingItem from "@/components/Product/ProductListingItem";
+import { products } from "@/lib/products";
 
 const ListingPage = () => {
   const clothes = new Array(30).fill("1");
@@ -50,21 +52,14 @@ const ListingPage = () => {
 
       {/* product listing starts here  */}
       <div className="max-w-7xl grid grid-cols-2 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
-        {clothes.map((item: any, index: number) => (
-          <div className="w-full" key={index}>
-            <Image
-              src="https://images.asos-media.com/products/ellesse-hazzo-tipped-detail-overhead-hoodie-in-black/206898212-1-black?$n_640w$&wid=634&fit=constrain"
-              alt="shop-image"
-              layout="responsive"
-              width={634}
-              height={640}
-              objectFit="cover"
-            />
-            <p className="text-sm font-light">
-              ellesse Hazzo tipped detail overhead hoodie in black
-            </p>
-            <p className="text-lg font-semibold mt-2">$ 79.99</p>
-          </div>
+        {products.map((item: any, index: number) => (
+          <ProductListingItem
+            key={index}
+            // imgSrc="https://images.asos-media.com/products/asos-design-slim-chino-shorts-in-khaki/205478455-1-green?$n_960w$&wid=952&fit=constrain"
+            imgSrc={item.imgSrc}
+            productName={item.productName}
+            price={item.price}
+          />
         ))}
       </div>
     </div>
