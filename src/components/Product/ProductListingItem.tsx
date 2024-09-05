@@ -25,7 +25,7 @@ const ProductListingItem: React.FC<Props> = ({
           objectFit="cover"
         />
         <p className="text-sm font-light">{productName}</p>
-        <p className="text-lg font-semibold mt-2">$ {price}</p>
+        <p className="text-base lg:text-lg font-semibold mt-2">$ {price}</p>
       </div>
     </Link>
   );
