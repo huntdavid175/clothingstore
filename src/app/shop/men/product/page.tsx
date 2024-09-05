@@ -10,6 +10,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Instagram, Heart, Tag, Star } from "lucide-react";
 import ProductDisplayCarousel from "@/components/Carousel/ProductDisplayCarousel";
+import ProductListingItem from "@/components/Product/ProductListingItem";
+import { products } from "@/lib/products";
 
 const product = {
   name: "Vintage Denim Jacket",
@@ -46,6 +48,8 @@ const product = {
 };
 
 const ProductDisplay = () => {
+  const otherProducts: any = products.splice(0, 8);
+
   return (
     <div className="w-full flex flex-col items-center">
       {" "}
@@ -155,6 +159,24 @@ const ProductDisplay = () => {
         </div>
       </div>
       {/* Carousel section ends here  */}
+      {/* More from seller  */}
+      <div className="max-w-5xl mt-20">
+        <h2 className="text-3xl mb-4 text-center font-semibold lg:text-left">
+          More from this seller
+        </h2>
+        <div className="max-w-7xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
+          {otherProducts.map((item: any, index: number) => (
+            <ProductListingItem
+              key={index}
+              // imgSrc="https://images.asos-media.com/products/asos-design-slim-chino-shorts-in-khaki/205478455-1-green?$n_960w$&wid=952&fit=constrain"
+              imgSrc={item.imgSrc}
+              productName={item.productName}
+              price={item.price}
+            />
+          ))}
+        </div>
+      </div>
+      {/* More from seller ends here  */}
     </div>
   );
 };
