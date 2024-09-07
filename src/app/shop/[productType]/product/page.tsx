@@ -52,31 +52,13 @@ const ProductDisplay = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {" "}
-      {/* main header  */}
-      <div className="w-full  bg-black text-white">
-        <div className="max-w-7xl flex justify-between items-center p-4 mx-auto">
-          <div className="flex space-x-4 items-center">
-            <GiHamburgerMenu className="text-xl" />
-            <h3 className="text-xl font-bold">Online Boutique</h3>
-          </div>
-
-          <div className="flex space-x-4 items-center text-xl">
-            <FaSearch />
-            <FaUser />
-            <TbJewishStarFilled />
-            <FaShoppingBag />
-          </div>
-        </div>
-      </div>
-      {/* main header ends  */}
       {/* Carousel section  */}
       <div className="max-w-5xl">
         <div className="flex flex-col lg:flex-row lg:gap-x-8">
           <div className="flex-1">
             <ProductDisplayCarousel />
           </div>
-          <div className="flex-2 px-4 mt-8 lg:mt-0 lg:px-0 lg:pl-12">
+          <div className="flex-2 px-4 mt-8 flex flex-col items-stretch lg:justify-end lg:mt-0 lg:px-0 lg:pl-12">
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-3xl font-bold">{product.name}</h1>
               <Button

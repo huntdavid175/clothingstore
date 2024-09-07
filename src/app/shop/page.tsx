@@ -1,6 +1,7 @@
 import HomeShopCard from "@/components/HomeCards/HomeShopCard";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const galleryOne = [
@@ -27,12 +28,16 @@ const Shop = () => {
             This is ASOS
           </p>
           <div className="flex space-x-4">
-            <Button className="bg-white text-black hover:text-white lg:px-12">
-              Shop Womens
-            </Button>
-            <Button className="bg-white text-black hover:text-white lg:px-12">
-              Shop Mens
-            </Button>
+            <Link href={"/shop/women"}>
+              <Button className="bg-white text-black hover:text-white lg:px-12">
+                Shop Womens
+              </Button>
+            </Link>
+            <Link href={"/shop/men"}>
+              <Button className="bg-white text-black hover:text-white lg:px-12">
+                Shop Mens
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
