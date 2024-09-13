@@ -49,12 +49,12 @@ const PrivacyPolicyPage = () => {
         website is not intended for individuals under the age of 13. We do not
         knowingly collect or solicit personal data from children under 13. 9.
         Changes to this Privacy Policy We may update this Privacy Policy from
-        time to time. Any changes will be posted on this page, and the "Last
-        Updated" date will be revised. Continued use of the website after
-        changes are made will signify your acknowledgment and acceptance of the
-        updated policy. 10. Contact Us If you have any questions or concerns
-        about this Privacy Policy, please contact us at: [Online Boutique]
-        Email: [don.falcone1996@gmail.com]
+        time to time. Any changes will be posted on this page, and the Last
+        Updated date will be revised. Continued use of the website after changes
+        are made will signify your acknowledgment and acceptance of the updated
+        policy. 10. Contact Us If you have any questions or concerns about this
+        Privacy Policy, please contact us at: [Online Boutique] Email:
+        [don.falcone1996@gmail.com]
       </p>
     </div>
   );
