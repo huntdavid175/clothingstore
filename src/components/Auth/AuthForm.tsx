@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import InstagramSignup from "@/components/Auth/Instagram/InstagramSignup";
+import { login, signup } from "@/app/(auth)/auth/actions";
 
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -37,13 +38,14 @@ export default function AuthForm() {
           Sign Up
         </Button>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form action={signup} className="space-y-4">
         {!isLogin && (
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               type="text"
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -55,6 +57,7 @@ export default function AuthForm() {
           <Input
             id="email"
             type="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -64,6 +67,7 @@ export default function AuthForm() {
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
+            name="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -75,6 +79,7 @@ export default function AuthForm() {
             <Label htmlFor="confirmPassword">Confirm Password</Label>
             <Input
               id="confirmPassword"
+              name="confirm-password"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
