@@ -1,5 +1,3 @@
-"use server";
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -13,13 +11,7 @@ const InstagramSignup = () => {
   //     console.log("Instagram login clicked");
   //   };
   return (
-    <form
-      className="mt-4"
-      action={async () => {
-        "use server";
-        await signIn("instagram");
-      }}
-    >
+    <form className="mt-4">
       <Button
         variant="outline"
         className="w-full flex items-center justify-center"
