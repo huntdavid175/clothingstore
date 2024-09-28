@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 import { Instagram } from "lucide-react";
-import { signIn } from "../../../../auth";
 
 const InstagramSignup = () => {
   //   const handleInstagramLogin = async () => {
