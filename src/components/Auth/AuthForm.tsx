@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import InstagramSignup from "@/components/Auth/Instagram/InstagramSignup";
-import { login, signup } from "@/app/(auth)/auth/actions";
+import { login, signup } from "@/app/(authentication)/authentication/actions";
 
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);

@@ -35,9 +35,9 @@ const ListingPage = () => {
       {/* sort and filter ends here  */}
 
       {/* product listing starts here  */}
-      <div className="max-w-8xl flex ">
+      <div className="max-w-8xl flex">
         <SidebarFilter />
-        <div className="ml-[300px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
+        <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 gap-x-4 gap-y-4">
           {products.map((item: any, index: number) => (
             <ProductListingItem
               key={index}
