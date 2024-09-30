@@ -24,7 +24,7 @@ const ProductListingItem: React.FC<Props> = ({
           height={640}
           objectFit="cover"
         />
-        <p className="text-sm font-light font-raleway">{productName}</p>
+        <p className="text-sm font-raleway">{productName}</p>
         <p className="text-base lg:text-lg font-semibold mt-2 font-raleway">
           GHS {price}
         </p>
