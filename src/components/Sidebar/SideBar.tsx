@@ -16,7 +16,7 @@ export default function SidebarFilter() {
 
   return (
     <aside
-      className="hidden w-[300px] bg-background border-r h-[calc(100vh-4rem)] lg:sticky lg:left-0 lg:top-0 lg:flex lg:flex-col"
+      className="hidden w-[300px] bg-background border-r h-[calc(100vh-4rem)] flex-1 flex-shrink-0 lg:sticky lg:left-0 lg:top-0 lg:flex lg:flex-col"
       aria-label="Product filters"
     >
       <div className="p-4 border-b">
