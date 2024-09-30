@@ -58,7 +58,7 @@ const ProductDisplay = () => {
           <div className="flex-1">
             <ProductDisplayCarousel />
           </div>
-          <div className="flex-2 px-4 mt-8 flex flex-col items-stretch lg:justify-end lg:mt-0 lg:px-0 lg:pl-12">
+          <div className="flex-2 px-4 mt-8 flex flex-col items-stretch lg:justify-end lg:mt-0 lg:px-0 lg:pl-12 font-raleway">
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-3xl font-bold">{product.name}</h1>
               <Button
@@ -142,7 +142,7 @@ const ProductDisplay = () => {
       </div>
       {/* Carousel section ends here  */}
       {/* More from seller  */}
-      <div className="max-w-5xl mt-20">
+      <div className="max-w-5xl mt-20 font-raleway">
         <h2 className="text-3xl mb-4 text-center font-semibold lg:text-left">
           More from this seller
         </h2>
