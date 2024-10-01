@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import InstagramSignup from "@/components/Auth/Instagram/InstagramSignup";
-import { login, signup } from "@/app/(authentication)/authentication/actions";
+import { login, signup } from "@/app/(auth)/seller/auth/actions";
 
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,7 +38,7 @@ export default function AuthForm() {
           Sign Up
         </Button>
       </div>
-      <form action={signup} className="space-y-4">
+      <form action={isLogin ? login : signup} className="space-y-4">
         {!isLogin && (
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
