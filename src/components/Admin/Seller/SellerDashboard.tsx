@@ -1036,7 +1036,7 @@ export default function SellerDashboard() {
               <li>Write detailed product descriptions</li>
               <li>Use alt text for all product images</li>
               <li>Create unique content for each product page</li>
-              <li>Optimize your store's loading speed</li>
+              <li>Optimize your store&apos;s loading speed</li>
             </ul>
           </div>
           <div>
