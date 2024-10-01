@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Raleway } from "next/font/google";
 import Navbar from "@/components/Nav/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 import "../../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${raleway.variable}`}>
         {children}
+        <Toaster />
       </body>
     </html>
   );

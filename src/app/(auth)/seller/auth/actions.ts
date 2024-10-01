@@ -26,7 +26,7 @@ export async function login(formData: FormData) {
   redirect("/seller/admin");
 }
 
-export async function signup(formData: FormData) {
+export async function signup(prevState: any, formData: FormData) {
   const supabase = createClient();
 
   // type-casting here for convenience
@@ -43,14 +43,14 @@ export async function signup(formData: FormData) {
     },
   };
 
-  console.log(data);
+  // console.log(data);
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
     console.log(error);
-    redirect("/error");
+    return { status: error.status, message: error.code };
   }
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  // revalidatePath("/", "layout");
+  redirect("/seller/admin");
 }
