@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 import {
   HomeIcon,
@@ -12,10 +11,62 @@ import {
   PaletteIcon,
   LogOutIcon,
 } from "lucide-react";
+import path from "path";
+import SideBarItem from "./SideBarItem";
+
+const navLinks = [
+  {
+    name: "Dashboard",
+    href: "/seller/admin",
+    icon: <HomeIcon className="mr-2 h-4 w-4" />,
+    slug: "admin",
+  },
+  {
+    name: "Inventory",
+    href: "/seller/admin/inventory",
+    icon: <PackageIcon className="mr-2 h-4 w-4" />,
+    slug: "inventory",
+  },
+  {
+    name: "Profile",
+    href: "/seller/admin/profile",
+    icon: <UserIcon className="mr-2 h-4 w-4" />,
+    slug: "profile",
+  },
+  {
+    name: "Collections",
+    href: "/seller/admin/collections",
+    icon: <BoxesIcon className="mr-2 h-4 w-4" />,
+    slug: "collections",
+  },
+  {
+    name: "Inquiries",
+    href: "/seller/admin/inquiries",
+    icon: <MessageSquareIcon className="mr-2 h-4 w-4" />,
+    slug: "inquiries",
+  },
+
+  {
+    name: "Customization",
+    href: "/seller/admin/customization",
+    icon: <PaletteIcon className="mr-2 h-4 w-4" />,
+    slug: "customization",
+  },
+  {
+    name: "Seasonal Showcase",
+    href: "/seller/admin/seasonal-showcase",
+    icon: <CalendarIcon className="mr-2 h-4 w-4" />,
+    slug: "seasonal-showcase",
+  },
+  {
+    name: "SEO Tools",
+    href: "/seller/admin/seo-tools",
+    icon: <SearchIcon className="mr-2 h-4 w-4" />,
+    slug: "seo-tools",
+  },
+];
 
 const SideBar = () => {
-  //   const [activeTab, setActiveTab] = useState("dashboard");
-
   return (
     <aside className="w-64 bg-white dark:bg-gray-800 border-r">
       <div className="p-6">
@@ -24,78 +75,9 @@ const SideBar = () => {
         </h2>
       </div>
       <nav className="mt-6">
-        <Link href={"/seller/admin"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <HomeIcon className="mr-2 h-4 w-4" />
-            Dashboard
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/inventory"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <PackageIcon className="mr-2 h-4 w-4" />
-            Inventory
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/profile"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <UserIcon className="mr-2 h-4 w-4" />
-            Profile
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/collections"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <BoxesIcon className="mr-2 h-4 w-4" />
-            Collections
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/inquiries"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <MessageSquareIcon className="mr-2 h-4 w-4" />
-            Inquiries
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/customization"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <PaletteIcon className="mr-2 h-4 w-4" />
-            Customization
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/seasonal-showcase"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            Seasonal Showcase
-          </Button>
-        </Link>
-        <Link href={"/seller/admin/seo-tools"}>
-          <Button
-            variant="ghost"
-            className="w-full justify-start cursor-pointer"
-          >
-            <SearchIcon className="mr-2 h-4 w-4" />
-            SEO Tools
-          </Button>
-        </Link>
+        {navLinks.map((item) => (
+          <SideBarItem key={item.name} {...item} />
+        ))}
       </nav>
       <div className="absolute bottom-4 left-4">
         <Button variant="ghost">

@@ -20,18 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} ${raleway.variable}`}>
-        <AdminBar />
-        <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
-          <SideBar />
-          <main className="flex-1 overflow-y-auto p-6">
-            {/* <h2 className="text-2xl font-bold">Dashboard Overview</h2>
+    <>
+      <AdminBar />
+      <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
+        <SideBar />
+        <main className="flex-1 overflow-y-auto p-6">
+          {/* <h2 className="text-2xl font-bold">Dashboard Overview</h2>
           <DashboardContent /> */}
-            {children}
-          </main>
-        </div>
-      </body>
-    </html>
+          {children}
+        </main>
+      </div>
+    </>
   );
 }
