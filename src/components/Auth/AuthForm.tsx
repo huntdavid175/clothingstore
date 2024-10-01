@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,13 +23,16 @@ export default function AuthForm() {
 
   const { toast } = useToast();
 
-  if (formState.status !== 0) {
-    toast({
-      title: "Uh oh! Something went wrong.",
-      description: formState.message,
-      variant: "destructive",
-    });
-  }
+  // Show a toast only when formState changes
+  useEffect(() => {
+    if (formState.status !== 0) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: formState.message,
+        variant: "destructive",
+      });
+    }
+  }, [formState, toast]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
