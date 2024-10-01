@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import InstagramSignup from "@/components/Auth/Instagram/InstagramSignup";
 import { useToast } from "@/hooks/use-toast";
 import { login, signup } from "@/app/(auth)/seller/auth/actions";
+import { Loader2 } from "lucide-react";
 
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +16,8 @@ export default function AuthForm() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [formState, formAction] = useFormState(signup, {
     status: 0,
@@ -31,6 +34,8 @@ export default function AuthForm() {
         description: formState.message,
         variant: "destructive",
       });
+
+      loading && setLoading(false);
     }
   }, [formState, toast]);
 
@@ -38,6 +43,17 @@ export default function AuthForm() {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Form submitted:", { email, password, name, confirmPassword });
+  };
+
+  const SubmitButton = () => {
+    const { pending } = useFormStatus();
+
+    return (
+      <Button disabled={pending} type="submit" className="w-full">
+        {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {isLogin ? "Login" : "Sign Up"}
+      </Button>
+    );
   };
 
   return (
@@ -107,9 +123,7 @@ export default function AuthForm() {
             />
           </div>
         )}
-        <Button type="submit" className="w-full">
-          {isLogin ? "Login" : "Sign Up"}
-        </Button>
+        <SubmitButton />
       </form>
       <InstagramSignup />
     </div>
