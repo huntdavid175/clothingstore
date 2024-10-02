@@ -54,5 +54,5 @@ export async function signup(prevState: any, formData: FormData) {
   console.log(data);
 
   // revalidatePath("/", "layout");
-  redirect("/seller/admin");
+  redirect("/auth/confirm-email");
 }

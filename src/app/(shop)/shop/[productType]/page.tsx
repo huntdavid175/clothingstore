@@ -7,9 +7,22 @@ import FilterDrawer from "@/components/Drawer/filterDrawer";
 import ProductListingItem from "@/components/Product/ProductListingItem";
 import { products } from "@/lib/products";
 import SidebarFilter from "@/components/Sidebar/SideBar";
+import { createClient } from "../../../../../utils/supabase/server";
 
-const ListingPage = () => {
-  const clothes = new Array(30).fill("1");
+const ListingPage = async () => {
+  const supabase = createClient();
+
+  const { data } = await supabase.from("products").select(`
+    *,
+ 
+    categories (
+      id,
+      name
+    ), 
+    profiles(id, username, avatar_url, website)
+  `);
+
+  console.log(data);
 
   return (
     <div className="w-full flex flex-col items-center">
