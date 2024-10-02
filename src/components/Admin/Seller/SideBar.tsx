@@ -68,7 +68,7 @@ const navLinks = [
 
 const SideBar = () => {
   return (
-    <aside className="w-64 bg-white dark:bg-gray-800 border-r">
+    <aside className="hidden lg:block w-64 bg-white dark:bg-gray-800 border-r">
       <div className="p-6">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
           Seller Dashboard

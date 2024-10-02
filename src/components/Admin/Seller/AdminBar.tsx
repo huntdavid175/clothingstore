@@ -13,7 +13,9 @@ const AdminBar = () => {
             <div className="lg:hidden">
               <GiHamburgerMenu className="text-xl" />
             </div>
-            <h3 className="text-xl font-bold">Online Boutique</h3>
+            <h3 className="hidden lg:block text-xl font-bold">
+              Online Boutique
+            </h3>
           </div>
 
           <div className="flex space-x-4 items-center text-xl">
