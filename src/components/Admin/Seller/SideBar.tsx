@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import path from "path";
 import SideBarItem from "./SideBarItem";
+import { logout } from "@/app/(auth)/seller/auth/actions";
 
 const navLinks = [
   {
@@ -80,10 +81,12 @@ const SideBar = () => {
         ))}
       </nav>
       <div className="absolute bottom-4 left-4">
-        <Button variant="ghost">
-          <LogOutIcon className="mr-2 h-4 w-4" />
-          Logout
-        </Button>
+        <form action={logout}>
+          <Button variant="ghost" type="submit">
+            <LogOutIcon className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </form>
       </div>
     </aside>
   );

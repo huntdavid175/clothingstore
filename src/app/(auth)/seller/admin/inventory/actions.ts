@@ -2,6 +2,12 @@
 
 import { createClient } from "../../../../../../utils/supabase/server";
 
+const getUser = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+  return data.user;
+};
+
 export const createProduct = async (prevState: any, formData: FormData) => {
   const supabase = createClient();
 
@@ -9,6 +15,7 @@ export const createProduct = async (prevState: any, formData: FormData) => {
     name: formData.get("name") as string,
     // description: formData.get("description") as string,
     price: formData.get("price") as string,
+    // seller_id: (await getUser())?.id,
     // quantity: formData.get("quantity") as string,
     // categories: formData.get("categories") as string,
   });

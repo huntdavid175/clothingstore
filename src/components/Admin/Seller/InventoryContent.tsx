@@ -280,7 +280,7 @@ const InventoryContent = () => {
   };
 
   const ImageGallery = ({ images }: { images: any }) => (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-7 gap-2">
       {images.map((image: any, index: number) => (
         <img
           key={index}

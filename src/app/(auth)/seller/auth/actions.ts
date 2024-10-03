@@ -57,3 +57,10 @@ export async function signup(prevState: any, formData: FormData) {
   revalidatePath("/", "layout");
   redirect("/seller/admin/collections");
 }
+
+export async function logout() {
+  const supabase = createClient();
+  await supabase.auth.signOut();
+  revalidatePath("/", "layout");
+  redirect("/seller/auth");
+}
