@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -164,6 +164,8 @@ const InventoryContent = () => {
     }
   };
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   //formaction implementation
   const [formState, formAction] = useFormState(createProduct, {
     status: 0,
@@ -311,14 +313,21 @@ const InventoryContent = () => {
           <CardTitle>Add New Clothing Item</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={formAction} className="space-y-4">
+          <form
+            action={async (formData) => {
+              await formAction(formData);
+              formRef.current?.reset(); //reset form after submission
+            }}
+            className="space-y-4"
+            ref={formRef}
+          >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
                   name="name"
-                  value={newItem.name}
+                  // value={newItem.name}
                   onChange={handleInputChange}
                   required
                 />
@@ -327,7 +336,7 @@ const InventoryContent = () => {
                 <Label htmlFor="category">Category</Label>
                 <Select
                   name="category"
-                  value={newItem.category}
+                  // value={newItem.category}
                   onValueChange={handleCategoryChange}
                   required
                 >
@@ -349,7 +358,7 @@ const InventoryContent = () => {
                   name="price"
                   type="number"
                   step="0.01"
-                  value={newItem.price}
+                  // value={newItem.price}
                   onChange={handleInputChange}
                   required
                 />
