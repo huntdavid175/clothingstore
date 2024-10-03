@@ -19,7 +19,6 @@ const SideBarItem: React.FC<Props> = ({ name, href, icon, slug }) => {
 
   const isActive = currentPath === slug;
 
-  console.log(isActive);
   return (
     <Link href={href}>
       <Button

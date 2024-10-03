@@ -1,8 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createProduct } from "@/app/(auth)/seller/admin/inventory/actions";
+import { useToast } from "@/hooks/use-toast";
 import {
   Select,
   SelectContent,
@@ -36,6 +39,7 @@ import {
   ImageIcon,
   InstagramIcon,
   DownloadIcon,
+  Loader2,
   EditIcon,
 } from "lucide-react";
 
@@ -160,6 +164,30 @@ const InventoryContent = () => {
     }
   };
 
+  //formaction implementation
+  const [formState, formAction] = useFormState(createProduct, {
+    status: 0,
+    message: "",
+  });
+
+  //show toast only when formstate changes
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (formState.status === 200) {
+      toast({
+        title: "Success!",
+        description: formState.message,
+      });
+    } else {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: formState.message,
+        variant: "destructive",
+      });
+    }
+  }, [formState, toast]);
+
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setNewItem((prev) => ({ ...prev, [name]: value }));
@@ -262,6 +290,20 @@ const InventoryContent = () => {
     </div>
   );
 
+  const SubmitButton = () => {
+    const { pending } = useFormStatus();
+    return (
+      <Button disabled={pending} type="submit" className="w-full">
+        {pending ? (
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <PlusIcon className="mr-2 h-4 w-4" />
+        )}
+        Add Item
+      </Button>
+    );
+  };
+
   return (
     <>
       <Card className="mb-8">
@@ -269,7 +311,7 @@ const InventoryContent = () => {
           <CardTitle>Add New Clothing Item</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form action={formAction} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
@@ -359,9 +401,7 @@ const InventoryContent = () => {
                 <ImageGallery images={newItem.images} />
               </div>
             )}
-            <Button type="submit" className="w-full">
-              <PlusIcon className="mr-2 h-4 w-4" /> Add Item
-            </Button>
+            <SubmitButton />
           </form>
         </CardContent>
       </Card>

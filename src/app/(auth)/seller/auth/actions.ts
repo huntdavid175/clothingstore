@@ -48,11 +48,12 @@ export async function signup(prevState: any, formData: FormData) {
 
   if (error) {
     console.log(error);
+    // redirect("/auth/confirm-email");
     return { status: error.status, message: error.code };
   }
 
   console.log(data);
 
-  // revalidatePath("/", "layout");
-  redirect("/auth/confirm-email");
+  revalidatePath("/", "layout");
+  redirect("/seller/admin/collections");
 }
