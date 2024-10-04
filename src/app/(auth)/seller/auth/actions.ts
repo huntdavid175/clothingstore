@@ -35,6 +35,7 @@ export async function signup(prevState: any, formData: FormData) {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
     options: {
+      emailRedirectTo: "https://clothingstore-amber.vercel.app/seller/admin",
       data: {
         username: formData.get("username") as string,
         avatar_url: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
