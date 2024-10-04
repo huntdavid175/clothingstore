@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     if (!error) {
       // redirect user to specified redirect URL or root of app
       console.log(next);
-      return redirect("/shop");
+      return redirect("https://clothingstore-amber.vercel.app/seller/admin");
     }
 
     if (error.code === "otp_expired") {
