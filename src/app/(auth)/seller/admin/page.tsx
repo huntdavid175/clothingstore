@@ -5,12 +5,12 @@ import SellerDashboard from "@/components/Admin/Seller/SellerDashboard";
 import DashboardContent from "@/components/Admin/Seller/DashboardContent";
 
 const SellerAdminPage = async () => {
-  const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
+  // const supabase = createClient();
+  // const { data, error } = await supabase.auth.getUser();
 
-  if (!data.user || error) {
-    redirect("/seller/auth");
-  }
+  // if (!data.user || error) {
+  //   redirect("/seller/auth");
+  // }
 
   return (
     <div className="space-y-4">

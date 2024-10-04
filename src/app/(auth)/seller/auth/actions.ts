@@ -36,10 +36,10 @@ export async function signup(prevState: any, formData: FormData) {
     password: formData.get("password") as string,
     options: {
       data: {
-        username: "Fawaz",
+        username: formData.get("username") as string,
         avatar_url: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
         website: "https://clothingstore-amber.vercel.app",
-        full_name: "Fawaz",
+        full_name: formData.get("username") as string,
       },
     },
   };
@@ -53,15 +53,15 @@ export async function signup(prevState: any, formData: FormData) {
     return { status: error.status, message: error.code };
   }
 
-  console.log(data);
+  console.log("signup success :", data.user);
 
-  revalidatePath("/", "layout");
-  redirect("/auth/confirm-email");
+  revalidatePath("/seller", "layout");
+  redirect("/seller/auth/confirm-email");
 }
 
 export async function logout() {
   const supabase = createClient();
   await supabase.auth.signOut();
-  revalidatePath("/", "layout");
+  revalidatePath("/seller", "layout");
   redirect("/seller/auth");
 }
