@@ -39,6 +39,7 @@ export async function signup(prevState: any, formData: FormData) {
         username: "Fawaz",
         avatar_url: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
         website: "https://clothingstore-amber.vercel.app",
+        full_name: "Fawaz",
       },
     },
   };
@@ -55,7 +56,7 @@ export async function signup(prevState: any, formData: FormData) {
   console.log(data);
 
   revalidatePath("/", "layout");
-  redirect("/seller/admin/collections");
+  redirect("/auth/confirm-email");
 }
 
 export async function logout() {
