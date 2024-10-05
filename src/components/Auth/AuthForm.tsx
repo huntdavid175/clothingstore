@@ -19,7 +19,12 @@ export default function AuthForm() {
 
   const [loading, setLoading] = useState(false);
 
-  const [formState, formAction] = useFormState(signup, {
+  const [formSignupState, formSignupAction] = useFormState(signup, {
+    status: 0,
+    message: "",
+  });
+
+  const [formLoginState, formLoginAction] = useFormState(login, {
     status: 0,
     message: "",
   });
@@ -28,16 +33,26 @@ export default function AuthForm() {
 
   // Show a toast only when formState changes
   useEffect(() => {
-    if (formState.status !== 0) {
+    if (formSignupState.status !== 0) {
       toast({
         title: "Uh oh! Something went wrong.",
-        description: formState.message,
+        description: formSignupState.message,
         variant: "destructive",
       });
 
       loading && setLoading(false);
     }
-  }, [formState, toast]);
+
+    if (formLoginState.status !== 0) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: formLoginState.message,
+        variant: "destructive",
+      });
+
+      loading && setLoading(false);
+    }
+  }, [formSignupState, formLoginState, toast]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +89,10 @@ export default function AuthForm() {
           Sign Up
         </Button>
       </div>
-      <form action={isLogin ? login : formAction} className="space-y-4">
+      <form
+        action={isLogin ? formLoginAction : formSignupAction}
+        className="space-y-4"
+      >
         {!isLogin && (
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
