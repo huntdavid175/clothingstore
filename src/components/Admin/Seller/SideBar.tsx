@@ -34,12 +34,12 @@ const navLinks = [
     icon: <UserIcon className="mr-2 h-4 w-4" />,
     slug: "profile",
   },
-  {
-    name: "Collections",
-    href: "/seller/admin/collections",
-    icon: <BoxesIcon className="mr-2 h-4 w-4" />,
-    slug: "collections",
-  },
+  // {
+  //   name: "Collections",
+  //   href: "/seller/admin/collections",
+  //   icon: <BoxesIcon className="mr-2 h-4 w-4" />,
+  //   slug: "collections",
+  // },
   {
     name: "Inquiries",
     href: "/seller/admin/inquiries",
@@ -47,18 +47,18 @@ const navLinks = [
     slug: "inquiries",
   },
 
-  {
-    name: "Customization",
-    href: "/seller/admin/customization",
-    icon: <PaletteIcon className="mr-2 h-4 w-4" />,
-    slug: "customization",
-  },
-  {
-    name: "Seasonal Showcase",
-    href: "/seller/admin/seasonal-showcase",
-    icon: <CalendarIcon className="mr-2 h-4 w-4" />,
-    slug: "seasonal-showcase",
-  },
+  // {
+  //   name: "Customization",
+  //   href: "/seller/admin/customization",
+  //   icon: <PaletteIcon className="mr-2 h-4 w-4" />,
+  //   slug: "customization",
+  // },
+  // {
+  //   name: "Seasonal Showcase",
+  //   href: "/seller/admin/seasonal-showcase",
+  //   icon: <CalendarIcon className="mr-2 h-4 w-4" />,
+  //   slug: "seasonal-showcase",
+  // },
   {
     name: "SEO Tools",
     href: "/seller/admin/seo-tools",
