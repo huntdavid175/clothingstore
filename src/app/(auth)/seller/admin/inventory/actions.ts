@@ -13,11 +13,12 @@ export const createProduct = async (prevState: any, formData: FormData) => {
 
   const { data, error } = await supabase.from("products").insert({
     name: formData.get("name") as string,
-    // description: formData.get("description") as string,
+    description: formData.get("description") as string,
     price: formData.get("price") as string,
     // seller_id: (await getUser())?.id,
-    // quantity: formData.get("quantity") as string,
-    // categories: formData.get("categories") as string,
+    stock_quantity: formData.get("quantity") as string,
+    status: false,
+    // category: formData.get("category") as string,
   });
 
   if (error) {

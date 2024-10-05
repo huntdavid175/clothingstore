@@ -42,6 +42,7 @@ import {
   Loader2,
   EditIcon,
 } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
 // Mock data for collections
 const initialCollections = [
@@ -333,6 +334,23 @@ const InventoryContent = () => {
                 />
               </div>
               <div className="space-y-2">
+                <Label htmlFor="category">Gender Category</Label>
+                <Select
+                  name="gender"
+                  // value={newItem.category}
+                  onValueChange={handleCategoryChange}
+                  required
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Tops">Men</SelectItem>
+                    <SelectItem value="Bottoms">Women</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="category">Category</Label>
                 <Select
                   name="category"
@@ -384,7 +402,7 @@ const InventoryContent = () => {
                   onChange={handleTagChange}
                 />
               </div>
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="collection">Collection</Label>
                 <Select
                   name="collection"
@@ -402,7 +420,22 @@ const InventoryContent = () => {
                     ))}
                   </SelectContent>
                 </Select>
+              </div> */}
+              <div className="space-y-2">
+                <Label htmlFor="price">Stock Quantity</Label>
+                <Input
+                  id="quantity"
+                  name="quantity"
+                  type="number"
+                  step="1"
+                  // value={newItem.price}
+                  // onChange={handleInputChange}
+                />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="description">Description</Label>
+              <Textarea id="description" name="description" />
             </div>
             {newItem.images.length > 0 && (
               <div className="mt-4">
