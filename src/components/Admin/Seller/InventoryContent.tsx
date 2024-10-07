@@ -4,7 +4,10 @@ import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createProduct } from "@/app/(auth)/seller/admin/inventory/actions";
+import {
+  createProduct,
+  uploadImages,
+} from "@/app/(auth)/seller/admin/inventory/actions";
 import { useToast } from "@/hooks/use-toast";
 import {
   Select,
@@ -141,29 +144,29 @@ const InventoryContent = () => {
     }
   }, [isInstagramLinked]);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (
-      newItem.name &&
-      newItem.category &&
-      newItem.price &&
-      newItem.images.length > 0
-    ) {
-      setClothes((prev) => [
-        ...prev,
-        { ...newItem, id: Date.now(), price: parseFloat(newItem.price) },
-      ]);
-      setNewItem({
-        name: "",
-        category: "",
-        price: "",
-        images: [],
-        inStock: true,
-        tags: [],
-        collection: "",
-      });
-    }
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   if (
+  //     newItem.name &&
+  //     newItem.category &&
+  //     newItem.price &&
+  //     newItem.images.length > 0
+  //   ) {
+  //     setClothes((prev) => [
+  //       ...prev,
+  //       { ...newItem, id: Date.now(), price: parseFloat(newItem.price) },
+  //     ]);
+  //     setNewItem({
+  //       name: "",
+  //       category: "",
+  //       price: "",
+  //       images: [],
+  //       inStock: true,
+  //       tags: [],
+  //       collection: "",
+  //     });
+  //   }
+  // };
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -218,6 +221,18 @@ const InventoryContent = () => {
       }));
     });
   };
+
+  useEffect(() => {
+    if (newItem.images.length > 0) {
+      const uploadImagesFunc = async () => {
+        await uploadImages(newItem.images[0]);
+      };
+
+      uploadImagesFunc();
+    }
+  }, [newItem.images]);
+
+  console.log(newItem.images);
 
   const handleDelete = (id: any) => {
     setClothes((prev) => prev.filter((item) => item.id !== id));
@@ -309,145 +324,6 @@ const InventoryContent = () => {
 
   return (
     <>
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Add New Clothing Item</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form
-            action={async (formData) => {
-              await formAction(formData);
-              formRef.current?.reset(); //reset form after submission
-            }}
-            className="space-y-4"
-            ref={formRef}
-          >
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  // value={newItem.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="category">Gender Category</Label>
-                <Select
-                  name="gender"
-                  // value={newItem.category}
-                  onValueChange={handleCategoryChange}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Tops">Men</SelectItem>
-                    <SelectItem value="Bottoms">Women</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
-                <Select
-                  name="category"
-                  // value={newItem.category}
-                  onValueChange={handleCategoryChange}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Tops">Tops</SelectItem>
-                    <SelectItem value="Bottoms">Bottoms</SelectItem>
-                    <SelectItem value="Dresses">Dresses</SelectItem>
-                    <SelectItem value="Accessories">Accessories</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="price">Price ($)</Label>
-                <Input
-                  id="price"
-                  name="price"
-                  type="number"
-                  step="0.01"
-                  // value={newItem.price}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="images">Images</Label>
-                <Input
-                  id="images"
-                  name="images"
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageUpload}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="tags">Tags (comma-separated)</Label>
-                <Input
-                  id="tags"
-                  name="tags"
-                  value={newItem.tags.join(", ")}
-                  onChange={handleTagChange}
-                />
-              </div>
-              {/* <div className="space-y-2">
-                <Label htmlFor="collection">Collection</Label>
-                <Select
-                  name="collection"
-                  value={newItem.collection}
-                  onValueChange={handleCollectionChange}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select collection" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {collections.map((collection) => (
-                      <SelectItem key={collection.id} value={collection.name}>
-                        {collection.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div> */}
-              <div className="space-y-2">
-                <Label htmlFor="price">Stock Quantity</Label>
-                <Input
-                  id="quantity"
-                  name="quantity"
-                  type="number"
-                  step="1"
-                  // value={newItem.price}
-                  // onChange={handleInputChange}
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="description">Description</Label>
-              <Textarea id="description" name="description" />
-            </div>
-            {newItem.images.length > 0 && (
-              <div className="mt-4">
-                <Label>Uploaded Images</Label>
-                <ImageGallery images={newItem.images} />
-              </div>
-            )}
-            <SubmitButton />
-          </form>
-        </CardContent>
-      </Card>
-
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Instagram Integration</CardTitle>

@@ -1,0 +1,5 @@
+#Upload images
+#Create different roles
+#load profile
+#edit profile
+#link account to instagram
