@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactElement } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +43,8 @@ import {
   InstagramIcon,
   DownloadIcon,
   Loader2,
+  Pencil,
+  BookCheck,
   EditIcon,
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -308,36 +310,61 @@ const AddProduct = () => {
     </div>
   );
 
-  const SubmitButton = () => {
+  const SubmitButton = ({
+    name,
+    classes,
+    icon,
+  }: {
+    name: string;
+    classes: string;
+    icon: React.ReactNode;
+  }) => {
     const { pending } = useFormStatus();
     return (
-      <Button disabled={pending} type="submit" className="w-full">
-        {pending ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <PlusIcon className="mr-2 h-4 w-4" />
-        )}
-        Add Item
+      <Button disabled={pending} type="submit" className={classes}>
+        {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : icon}
+        {name}
       </Button>
     );
   };
 
   return (
-    <div className="w-full flex flex-col lg:flex-row gap-x-4">
-      <div className="flex-2 flex-grow">
-        <Card className="mb-2">
-          <CardHeader>
-            <CardTitle>Add New Clothing Item</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form
-              action={async (formData) => {
-                await formAction(formData);
-                formRef.current?.reset(); //reset form after submission
-              }}
-              className="space-y-4"
-              ref={formRef}
-            >
+    <form
+      action={async (formData) => {
+        await formAction(formData);
+        formRef.current?.reset(); //reset form after submission
+      }}
+      className="space-y-4"
+      ref={formRef}
+    >
+      <div className="w-full flex lg:justify-between">
+        <h2 className="text-2xl font-bold">Add Product</h2>
+        <div className="flex space-x-4">
+          {/* <Button className="bg-white text-black hover:text-white hover:bg-zinc-500">
+            Save Draft
+          </Button> */}
+
+          <SubmitButton
+            name="Save Draft"
+            classes="bg-white text-black hover:text-white hover:bg-zinc-500 "
+            icon={<Pencil className="mr-2 h-4 w-4" />}
+          />
+          <SubmitButton
+            name="Publish"
+            classes=""
+            icon={<BookCheck className="mr-2 h-4 w-4" />}
+          />
+          {/* <Button color="indigo">Publish</Button> */}
+        </div>
+      </div>
+
+      <div className="w-full flex flex-col lg:flex-row gap-x-4">
+        <div className="flex-2 flex-grow">
+          <Card className="mb-2">
+            <CardHeader>
+              <CardTitle>General Information</CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Product Name</Label>
@@ -461,24 +488,15 @@ const AddProduct = () => {
                 </div>
               )}
               {/* <SubmitButton /> */}
-            </form>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* card 2 */}
-        <Card className="mb-2">
-          <CardHeader>
-            <CardTitle>Pricing</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form
-              action={async (formData) => {
-                await formAction(formData);
-                formRef.current?.reset(); //reset form after submission
-              }}
-              className="space-y-4"
-              ref={formRef}
-            >
+          {/* card 2 */}
+          <Card className="mb-2">
+            <CardHeader>
+              <CardTitle>Pricing</CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="price">Price ($)</Label>
@@ -509,25 +527,16 @@ const AddProduct = () => {
                   />
                 </div>
               </div>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
+            </CardContent>
+          </Card>
+        </div>
 
-      <div className="flex-1 flex-grow flex-shrink-0 lg:flex-[0_0_300px]">
-        <Card className="mb-2">
-          <CardHeader>
-            <CardTitle>Status</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form
-              action={async (formData) => {
-                await formAction(formData);
-                formRef.current?.reset(); //reset form after submission
-              }}
-              className="space-y-4"
-              ref={formRef}
-            >
+        <div className="flex-1 flex-grow flex-shrink-0 lg:flex-[0_0_400px]">
+          <Card className="mb-2">
+            <CardHeader>
+              <CardTitle>Status</CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="category">Product status</Label>
@@ -547,25 +556,16 @@ const AddProduct = () => {
                   </Select>
                 </div>
               </div>
-            </form>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* another  */}
+          {/* another  */}
 
-        <Card className="mb-2">
-          <CardHeader>
-            <CardTitle>Organizations</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form
-              action={async (formData) => {
-                await formAction(formData);
-                formRef.current?.reset(); //reset form after submission
-              }}
-              className="space-y-4"
-              ref={formRef}
-            >
+          <Card className="mb-2">
+            <CardHeader>
+              <CardTitle>Organizations</CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="category">Gender Category</Label>
@@ -615,12 +615,11 @@ const AddProduct = () => {
                   />
                 </div>
               </div>
-            </form>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* another 2 */}
-        {/* <Card className="mb-2">
+          {/* another 2 */}
+          {/* <Card className="mb-2">
           <CardHeader>
             <CardTitle>Product Status</CardTitle>
           </CardHeader>
@@ -655,8 +654,9 @@ const AddProduct = () => {
             </form>
           </CardContent>
         </Card> */}
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
